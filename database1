@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS subjects (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(60) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS marks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  learner_id INT NOT NULL,
+  subject_id INT NOT NULL,
+  exam_year SMALLINT NOT NULL,
+  term TINYINT NOT NULL,
+  exam VARCHAR(30) NOT NULL,
+  score DECIMAL(5,2) NOT NULL,
+  UNIQUE KEY uq_mark (learner_id, subject_id, exam_year, term, exam),
+  FOREIGN KEY (learner_id) REFERENCES learners(id) ON DELETE CASCADE,
+  FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE
+);
+
+INSERT IGNORE INTO subjects (name) VALUES
+  ('English'),
+  ('Kiswahili'),
+  ('Mathematics'),
+  ('Indigenous Language'),
+  ('Environmental Activities'),
+  ('Science and Technology'),
+  ('Integrated Science'),
+  ('Social Studies'),
+  ('Agriculture and Nutrition'),
+  ('Pre-Technical Studies'),
+  ('Creative Arts'),
+  ('Creative Arts and Sports'),
+  ('Religious Education');

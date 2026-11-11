@@ -1,0 +1,32 @@
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  full_name VARCHAR(100) NOT NULL,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('admin','teacher') NOT NULL DEFAULT 'teacher'
+);
+
+CREATE TABLE learners (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  admission_no VARCHAR(20) NOT NULL UNIQUE,
+  upi VARCHAR(30) NULL UNIQUE,
+  first_name VARCHAR(50) NOT NULL,
+  middle_name VARCHAR(50),
+  last_name VARCHAR(50) NOT NULL,
+  gender ENUM('Male','Female') NOT NULL,
+  dob DATE NOT NULL,
+  birth_cert_no VARCHAR(30),
+  grade TINYINT NOT NULL,
+  stream VARCHAR(20),
+  admission_date DATE NOT NULL,
+  previous_school VARCHAR(100),
+  special_needs TEXT,
+  county VARCHAR(50),
+  sub_county VARCHAR(50),
+  guardian_name VARCHAR(100) NOT NULL,
+  guardian_relationship VARCHAR(30),
+  guardian_phone VARCHAR(20) NOT NULL,
+  guardian_id_no VARCHAR(20),
+  status ENUM('Active','Transferred','Completed') DEFAULT 'Active',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
